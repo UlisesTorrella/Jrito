@@ -17,7 +17,5 @@ public class RitoChampion {
     int kills;
     int deaths;
     int assist;
-
-    
     
 }

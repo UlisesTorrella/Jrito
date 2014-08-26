@@ -17,6 +17,8 @@ public class RitoSummoner {
    double KDA = 0.00;
    RankedStats rankedStats;
    Champion main;
+   String rank="Carton V";
+   String lp="0";
    long id;
    RecentGames recentGames;
    Champion bestKDA;
@@ -27,13 +29,34 @@ public class RitoSummoner {
     public RitoSummoner(String name) throws JRiotException {
         lol.setApiKey("ad5f2333-5eb4-473f-a763-969480587d8c");
         lol.setRegion("las");
-        setKDA();
-        setRankedStats();
+        this.name=name;
         setMain();
+        setKDA();
+        //setRank();
+        //setLp();
         setId();
+        setRankedStats();
         setRecentGames();
     }
 
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank() throws JRiotException {
+        rank = rito.getSummRank(id);
+    }
+
+    public String getLp() {
+        return lp;
+    }
+
+    public void setLp() throws JRiotException {
+        lp = rito.getSummLP(id);
+    }
+
+    
+    
     public String getName() {
         return name;
     }
@@ -65,6 +88,7 @@ public class RitoSummoner {
 
     public void setMain() throws JRiotException {
         this.main = rito.getSummMain(name);
+        System.out.println("la wea aweona");
     }
 
     public long getId() {

@@ -534,6 +534,7 @@ public class AggregatedStats {
                 + ", totalAssists=" + totalAssists + ", totalChampionKills="
                 + totalChampionKills + ", totalDamageDealt=" + totalDamageDealt
                 + ", totalDamageTaken=" + totalDamageTaken
+                + ", totalDeathsPerSession = " + totalDeathsPerSession
                 + ", totalDoubleKills=" + totalDoubleKills
                 + ", totalFirstBlood=" + totalFirstBlood + ", totalGoldEarned="
                 + totalGoldEarned + ", totalHeal=" + totalHeal

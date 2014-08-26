@@ -12,14 +12,18 @@ import jriot.objects.*;
  * @author ulises
  */
 public class Jrito {
-    JRiot lol = new JRiot();
+    private JRiot lol = new JRiot();
 
     public Jrito() {
         lol.setApiKey("ad5f2333-5eb4-473f-a763-969480587d8c");
         lol.setRegion("las");
     }
 
-    
+    public RitoSummoner BuscarSummoner(String name) throws JRiotException{
+        RitoSummoner summ = new RitoSummoner(name);
+        
+        return summ;
+    }
     
     public String[] getChampsNameByList(ChampionList lista) throws JRiotException{
         String[] nombres = new String[lista.getChampionList().size()];

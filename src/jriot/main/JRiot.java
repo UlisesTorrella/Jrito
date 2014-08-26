@@ -78,6 +78,7 @@ public class JRiot {
      * @param id champion to return
      * @return Info about champion
      * @throws JRiotException
+     * MODIFICADO GENERATEDBASEURL
      */
     public Champion getChampion(int id) throws JRiotException {
         ApiCaller caller = new ApiCaller();
@@ -273,6 +274,7 @@ public class JRiot {
      * or 4)
      * @return Ranked that contains the stats.
      * @throws JRiotException
+     * 
      */
     public RankedStats getRankedStats(long summonerId, int season) throws JRiotException {
         ApiCaller caller = new ApiCaller();
