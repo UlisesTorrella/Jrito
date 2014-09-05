@@ -4,14 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/ulises/LinuxCode/Java/Jrito/src/jriot/objects/Game.java</file>
+            <file>file:/home/ulises/LinuxCode/Java/Jrito/src/jriot/GUI/GUIBuscarSumm.java</file>
             <file>file:/home/ulises/LinuxCode/Java/Jrito/src/jriot/main/JRiot.java</file>
-            <file>file:/home/ulises/LinuxCode/Java/Jrito/src/jriot/main/RitoChampion.java</file>
+            <file>file:/home/ulises/LinuxCode/Java/Jrito/src/jriot/main/ApikeyAndRegion.java</file>
             <file>file:/home/ulises/LinuxCode/Java/Jrito/src/jriot/objects/AggregatedStats.java</file>
             <file>file:/home/ulises/LinuxCode/Java/Jrito/src/jriot/main/RitoSummoner.java</file>
+            <file>file:/home/ulises/LinuxCode/Java/Jrito/src/jriot/GUI/GUIRito.java</file>
+            <file>file:/home/ulises/LinuxCode/Java/Jrito/src/jriot/main/ListaFavoritos.java</file>
             <file>file:/home/ulises/LinuxCode/Java/Jrito/src/jriot/main/Jrito.java</file>
-            <file>file:/home/ulises/LinuxCode/Java/Jrito/src/jriot/prueba/JriotPrueba.java</file>
             <file>file:/home/ulises/LinuxCode/Java/Jrito/src/jriot/main/ApiCaller.java</file>
-            <file>file:/home/ulises/LinuxCode/Java/Jrito/src/jriot/prueba/GUIRito.java</file>
         </group>
     </open-files>
 </project-private>

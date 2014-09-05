@@ -15,10 +15,12 @@ import jriot.objects.*;
 public class RitoSummoner {
    String name;
    double KDA = 0.00;
+   String killsDeathsAssists;
    RankedStats rankedStats;
    Champion main;
-   String rank="Carton V";
-   String lp="0";
+   Champion bestChamp;
+   String rank;
+   String lp;
    long id;
    RecentGames recentGames;
    Champion bestKDA;
@@ -27,18 +29,129 @@ public class RitoSummoner {
    
    
     public RitoSummoner(String name) throws JRiotException {
-        lol.setApiKey("ad5f2333-5eb4-473f-a763-969480587d8c");
-        lol.setRegion("las");
+        lol.setApiKey(ApikeyAndRegion.getApiKey());
+        lol.setRegion(ApikeyAndRegion.getRegion());
         this.name=name;
-        setMain();
-        setKDA();
-        //setRank();
-        //setLp();
         setId();
+        System.out.println("ranked statst");
         setRankedStats();
-        setRecentGames();
+        System.out.println("recents games");
+        //setRecentGames();
+
+        System.out.println("main");
+        setMain();
+        System.out.println("kdachamp");
+        setBestKDAChampion();        
+        System.out.println("genkda");
+        setKDA();
+        System.out.println("rank");
+        setRank();
+        System.out.println("lp");
+        setLp();
+        System.out.println("kdadea");
+        setKillsDeathsAssists();
+    }
+    
+    public void setBestKDAChampion() throws JRiotException{
+        ArrayList<ChampionStats> championes = rankedStats.getChampions();
+        int partidas=0;
+        int kills=0;
+        int assists=0;
+        int deaths=0;
+        int idBestKDA=0;
+        double bestKDA=0.00;
+        for(int i = 1; i<championes.size();i++){
+            ChampionStats champStats = championes.get(i);
+            if(champStats.getId()!=0){
+                partidas = champStats.getStats().getTotalSessionsPlayed();
+                kills = champStats.getStats().getTotalChampionKills();
+                assists = champStats.getStats().getTotalAssists();
+                deaths = champStats.getStats().getTotalDeathsPerSession();
+                int auxKDA = kills+ assists;
+                auxKDA = auxKDA/deaths;
+
+                if(auxKDA>bestKDA){
+                    idBestKDA=champStats.getId();
+                }                
+            }
+
+        }
+        System.out.println(idBestKDA);
+        bestChamp=lol.getChampion(idBestKDA);
+    }
+    
+
+    
+    public String getChampKDAbyId(long id){
+        String kda;
+        ArrayList<ChampionStats> championes = rankedStats.getChampions();
+        int partidas=0;
+        int kills=0;
+        int assists=0;
+        int deaths=0;
+        for(int i = 1; i<championes.size();i++){
+            ChampionStats champStats = championes.get(i);
+            if(champStats.getId() == id){        
+                partidas = champStats.getStats().getTotalSessionsPlayed();
+                kills = champStats.getStats().getTotalChampionKills();
+                assists = champStats.getStats().getTotalAssists();
+                deaths = champStats.getStats().getTotalDeathsPerSession();                             
+            }
+        }
+        kda=kills/partidas+"/"+deaths/partidas+"/"+assists/partidas;
+        return kda;
     }
 
+    public Champion getBestChamp() {
+        return bestChamp;
+    }
+
+    public void setBestChamp(Champion bestChamp) {
+        this.bestChamp = bestChamp;
+    }
+
+    public Champion getBestKDA() {
+        return bestKDA;
+    }
+
+    public void setBestKDA(Champion bestKDA) {
+        this.bestKDA = bestKDA;
+    }
+    
+    
+    public String getKillsDeathsAssists() {
+        return killsDeathsAssists;
+    }
+
+
+
+    
+    public void setKillsDeathsAssists() throws JRiotException{
+
+        ArrayList<ChampionStats> championes = rankedStats.getChampions();
+        int partidas=0;
+        int kills=0;
+        int deaths=0;
+        int assists=0;
+        for(int i = 1; i<championes.size();i++){
+            ChampionStats champStats = championes.get(i);
+            if(champStats.getId() == 0){        
+                partidas = champStats.getStats().getTotalSessionsPlayed();
+                kills = champStats.getStats().getTotalChampionKills();
+                assists = champStats.getStats().getTotalAssists();
+                deaths = champStats.getStats().getTotalDeathsPerSession();
+                              
+            }
+        }    
+        
+        kills = kills/ partidas;
+        deaths = deaths/partidas;
+        assists= assists/partidas;
+        
+        killsDeathsAssists=kills+" / "+ deaths + " / " + assists;
+
+    }
+    
     public String getRank() {
         return rank;
     }
@@ -69,10 +182,53 @@ public class RitoSummoner {
         return KDA;
     }
 
-    public void setKDA() throws JRiotException {
-        KDA = rito.getSummonerGeneralKDA(name);
-    }
 
+    public void setKDA() throws JRiotException {
+        double KDAaux = 0.00;
+        ArrayList<ChampionStats> championes = rankedStats.getChampions();
+        int partidas=0;
+        int kills=0;
+        int deaths=0;
+        int assists=0;
+        for(int i = 1; i<championes.size();i++){
+            ChampionStats champStats = championes.get(i);
+            if(champStats.getId() == 0){        
+                partidas = champStats.getStats().getTotalSessionsPlayed();
+                kills = champStats.getStats().getTotalChampionKills();
+                assists = champStats.getStats().getTotalAssists();
+                deaths = champStats.getStats().getTotalDeathsPerSession();
+                              
+            }
+        }    
+        
+        KDAaux = kills+ assists;
+        KDAaux = KDAaux/deaths;
+        double unm = KDAaux;
+        this.KDA = (double)Math.round(unm * 100) / 100;
+
+    }
+    
+    public void setMain() throws JRiotException{
+
+        int maxGamesUsed= 0;
+        int mainChampId = 115;
+        ArrayList<ChampionStats> championes = rankedStats.getChampions();
+        for(int i = 1; i<championes.size();i++){
+            ChampionStats champStats = championes.get(i);
+            // IF para evitar que confunda las stats totales con individuales
+            if(champStats.getId() != 0){
+                int gamesPlayed = champStats.getStats().getTotalSessionsPlayed();
+                if(gamesPlayed>maxGamesUsed){
+                    mainChampId = championes.get(i).getId();
+                    maxGamesUsed = gamesPlayed;
+                }
+            }
+        }
+        
+        main = lol.getChampion(mainChampId);
+        System.out.println(main.getName());
+    }
+    
     
     public RankedStats getRankedStats() {
         return rankedStats;
@@ -86,10 +242,6 @@ public class RitoSummoner {
         return main;
     }
 
-    public void setMain() throws JRiotException {
-        this.main = rito.getSummMain(name);
-        System.out.println("la wea aweona");
-    }
 
     public long getId() {
         return id;
@@ -106,11 +258,6 @@ public class RitoSummoner {
     public void setRecentGames() throws JRiotException {
         this.recentGames = lol.getRecentGames(id);
     }
-    
-    
-    
-   
-   
-    
+        
     
 }
