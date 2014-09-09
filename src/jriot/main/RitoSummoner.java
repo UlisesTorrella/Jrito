@@ -33,51 +33,47 @@ public class RitoSummoner {
         lol.setRegion(ApikeyAndRegion.getRegion());
         this.name=name;
         setId();
-        System.out.println("ranked statst");
         setRankedStats();
-        System.out.println("recents games");
         //setRecentGames();
 
-        System.out.println("main");
         setMain();
-        System.out.println("kdachamp");
-        setBestKDAChampion();        
-        System.out.println("genkda");
+        setBestChampion();        
         setKDA();
-        System.out.println("rank");
         setRank();
-        System.out.println("lp");
         setLp();
-        System.out.println("kdadea");
         setKillsDeathsAssists();
     }
     
-    public void setBestKDAChampion() throws JRiotException{
+    public void setBestChampion() throws JRiotException{
         ArrayList<ChampionStats> championes = rankedStats.getChampions();
-        int partidas=0;
-        int kills=0;
-        int assists=0;
-        int deaths=0;
-        int idBestKDA=0;
-        double bestKDA=0.00;
+        int ganadas=0;
+        int perdidas=0;
+        int diferencia;
+        int bestDiferencia = -1000;
+        int idBestDif=115;
         for(int i = 1; i<championes.size();i++){
             ChampionStats champStats = championes.get(i);
             if(champStats.getId()!=0){
-                partidas = champStats.getStats().getTotalSessionsPlayed();
-                kills = champStats.getStats().getTotalChampionKills();
-                assists = champStats.getStats().getTotalAssists();
-                deaths = champStats.getStats().getTotalDeathsPerSession();
-                int auxKDA = kills+ assists;
-                auxKDA = auxKDA/deaths;
+                if(champStats.getStats().getTotalSessionsPlayed()>10){
+                    ganadas = champStats.getStats().getTotalSessionsWon();
+                    System.out.println("ganadas"+ganadas);
+                    
+                    perdidas = champStats.getStats().getTotalSessionsLost();
+                    System.out.println("perdidas"+perdidas);
+                    diferencia = ganadas - perdidas;
+                    System.out.println("total"+diferencia);
 
-                if(auxKDA>bestKDA){
-                    idBestKDA=champStats.getId();
-                }                
+                    if(diferencia>bestDiferencia){
+                        System.out.println("LA WEA: "+diferencia);
+                        bestDiferencia=diferencia;
+                        idBestDif=champStats.getId();
+                    }                          
+                }
+          
             }
 
         }
-        System.out.println(idBestKDA);
-        bestChamp=lol.getChampion(idBestKDA);
+        bestChamp=lol.getChampion(idBestDif);
     }
     
 
@@ -98,6 +94,7 @@ public class RitoSummoner {
                 deaths = champStats.getStats().getTotalDeathsPerSession();                             
             }
         }
+
         kda=kills/partidas+"/"+deaths/partidas+"/"+assists/partidas;
         return kda;
     }

@@ -39,7 +39,7 @@
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="14" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -120,7 +120,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="imgMain">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jLabel10"/>
+            <Property name="text" type="java.lang.String" value="Si se ve esto algo salio mal"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -272,7 +272,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Best KDA Champ:"/>
+                <Property name="text" type="java.lang.String" value="Best Win Ratio Champ:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="txtMainKDA">
@@ -302,7 +302,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel9">
               <Properties>
-                <Property name="text" type="java.lang.String" value="KDA:"/>
+                <Property name="text" type="java.lang.String" value="BWR KDA:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">

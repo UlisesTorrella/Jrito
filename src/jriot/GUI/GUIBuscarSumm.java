@@ -97,7 +97,7 @@ public class GUIBuscarSumm extends javax.swing.JFrame {
             }
         });
 
-        imgMain.setText("jLabel10");
+        imgMain.setText("Si se ve esto algo salio mal");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -122,7 +122,7 @@ public class GUIBuscarSumm extends javax.swing.JFrame {
 
         txtKda.setText("No Ranked Data");
 
-        jLabel8.setText("Best KDA Champ:");
+        jLabel8.setText("Best Win Ratio Champ:");
 
         txtMainKDA.setText("No Ranked Data");
 
@@ -134,7 +134,7 @@ public class GUIBuscarSumm extends javax.swing.JFrame {
 
         txtName.setText("No Ranked Data");
 
-        jLabel9.setText("KDA:");
+        jLabel9.setText("BWR KDA:");
 
         jLabel7.setText("Kills/Deaths/Assists");
 
@@ -278,7 +278,7 @@ public class GUIBuscarSumm extends javax.swing.JFrame {
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(47, 47, 47)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
