@@ -27,7 +27,9 @@ public class GUIRito extends javax.swing.JFrame {
      */
     Jrito rito = new Jrito();
     public GUIRito() {
+        
         initComponents();
+        ListaFavoritos.levantarObjetoEntero();
         refreshTable();
         try {
             setFreeChamps();
@@ -100,6 +102,7 @@ public class GUIRito extends javax.swing.JFrame {
                 "Nombre", "Ranking", "KDA"
             }
         ));
+        tblFav.setEnabled(false);
         jScrollPane1.setViewportView(tblFav);
 
         jLabel2.setFont(new java.awt.Font("Open Sans", 3, 14)); // NOI18N
@@ -253,10 +256,18 @@ public class GUIRito extends javax.swing.JFrame {
                     System.out.println("na po");
                     break;          
         }
-        
-        System.out.println("ventanita");
-        GUIBuscarSumm gui = new GUIBuscarSumm(nameBox.getText(), this);
-        gui.setVisible(rootPaneCheckingEnabled);
+        try {
+            lol.setApiKey(ApikeyAndRegion.getApiKey());
+            lol.setRegion(ApikeyAndRegion.getRegion());
+            lol.getSummoner(nameBox.getText());
+            GUIBuscarSumm gui = new GUIBuscarSumm(nameBox.getText(), this);
+            gui.setVisible(rootPaneCheckingEnabled);        
+        } catch (JRiotException ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(this, "El invocador no posee suficientes partidas clasificatorias, o no existe");
+            
+        }
+
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     /**
@@ -297,23 +308,21 @@ public class GUIRito extends javax.swing.JFrame {
 
 
         //Levantamos los datos a cargar
-        RitoSummoner[] favoritos = ListaFavoritos.getFavoritos();
+        Favorito[] favoritos = ListaFavoritos.getFavoritos();
 
         //Creamos el modelo de datos de la tabla.
         DefaultTableModel model = new DefaultTableModel();
          System.out.println("ref");
-        model.addColumn("");
         model.addColumn("Nombre");
         model.addColumn("Ranking");
         model.addColumn("KDA");
 
         for (int i = 0; i < favoritos.length; i++) {
             if (favoritos[i] != null) {
-                String[] fila = new String[4];
-                fila[0] = "" + (i+1);
-                fila[1] = favoritos[i].getName();
-                fila[2] = favoritos[i].getRank();
-                fila[3] = "" + favoritos[i].getKDA();
+                String[] fila = new String[3];
+                fila[0] = favoritos[i].getNombre();
+                fila[1] = favoritos[i].getRank();
+                fila[2] = "" + favoritos[i].getKda();
                 model.addRow(fila);
             }
         }
@@ -324,9 +333,9 @@ public class GUIRito extends javax.swing.JFrame {
         long[] ids = rito.getFreeChampsID();
         jPanel1.setBackground(Color.black);
         for (int i = 0; i < ids.length; i++) {
-            System.out.println(ids[i]);
             ImageIcon icono = new ImageIcon("res/SmallImg/"+ids[i]+"_Web_0.jpg");
-            java.awt.Image img = icono.getImage();  
+            java.awt.Image img = icono.getImage();
+            //System.out.println(ids[i]);
             BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);  
             Graphics g = bi.createGraphics();  
             g.drawImage(img, 0, 0, 75, 75, null, null);  

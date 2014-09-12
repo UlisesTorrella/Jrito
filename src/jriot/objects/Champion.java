@@ -1,8 +1,9 @@
 package jriot.objects;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Champion {
+public class Champion implements Serializable{
 
     private boolean active;
     private boolean botEnabled;

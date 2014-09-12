@@ -1,6 +1,8 @@
 package jriot.objects;
 
-public class AggregatedStat {
+import java.io.Serializable;
+
+public class AggregatedStat implements Serializable {
 
     private int count;
     private int id;

@@ -5,13 +5,14 @@
  */
 
 package jriot.main;
+import java.io.Serializable;
 import java.util.*;
 import jriot.objects.*;
 /**
  *
  * @author ulises
  */
-public class Jrito {
+public class Jrito implements Serializable{
     private JRiot lol = new JRiot();
 
     public Jrito() {
@@ -19,10 +20,26 @@ public class Jrito {
         lol.setRegion(ApikeyAndRegion.getRegion());
     }
 
+    public Champion getChampion(int id) throws JRiotException{
+        return lol.getChampion(id);
+    }
+    
+    public RankedStats getRankedStats(long summonerId, int season) throws JRiotException{
+        return lol.getRankedStats(summonerId, season);
+    }
+    
+    public Summoner getSummoner(String name) throws JRiotException{
+        return lol.getSummoner(name);
+    }
+    
     public RitoSummoner BuscarSummoner(String name) throws JRiotException{
         RitoSummoner summ = new RitoSummoner(name);
         
         return summ;
+    }
+    
+    public RecentGames getRecentGames(long summonerId) throws JRiotException{
+        return lol.getRecentGames(summonerId);
     }
     
     public String[] getChampsNameByList(ChampionList lista) throws JRiotException{
@@ -80,13 +97,18 @@ public class Jrito {
         
         ArrayList<Champion> listaChamps = champFree.getChampionList();
         int cont = 0;
+        //System.out.println(listaChamps.size());
+
         for(int i=0;i<listaChamps.size();i++){
             if(listaChamps.get(i).getId()!=86){
                 if(listaChamps.get(i).getId()!=22){
-                    System.out.println(i);
+                    System.out.println(listaChamps.get(i).getId());
                     long id = listaChamps.get(i).getId();
                     lista[cont]=id;
                     cont++;
+                    if(cont==10){
+                        return lista;
+                    }
                 }          
             }
         }

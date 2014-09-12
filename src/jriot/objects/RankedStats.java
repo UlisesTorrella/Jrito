@@ -1,8 +1,9 @@
 package jriot.objects;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class RankedStats {
+public class RankedStats implements Serializable{
 
     private ArrayList<ChampionStats> champions;
     private long modifyDate;

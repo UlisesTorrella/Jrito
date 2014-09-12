@@ -1,6 +1,8 @@
 package jriot.objects;
 
-public class ChampionStats {
+import java.io.Serializable;
+
+public class ChampionStats implements Serializable{
 
     private int id;
     private AggregatedStats stats;

@@ -1,8 +1,9 @@
 package jriot.objects;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class RecentGames {
+public class RecentGames implements Serializable{
 
     private ArrayList<Game> games;
     private long summonerId;

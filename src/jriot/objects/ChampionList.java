@@ -1,9 +1,10 @@
 package jriot.objects;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class ChampionList {
+public class ChampionList implements Serializable{
 
     private Map<String, Champion> data;
     private Map<String, String> keys;

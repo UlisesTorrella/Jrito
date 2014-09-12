@@ -5,6 +5,7 @@
  */
 
 package jriot.main;
+import java.io.Serializable;
 import java.util.*;
 import jriot.objects.*;
 
@@ -12,7 +13,7 @@ import jriot.objects.*;
  *
  * @author ulises
  */
-public class RitoSummoner {
+public class RitoSummoner implements Serializable {
    String name;
    double KDA = 0.00;
    String killsDeathsAssists;
@@ -25,12 +26,10 @@ public class RitoSummoner {
    RecentGames recentGames;
    Champion bestKDA;
    Jrito rito = new Jrito();
-   JRiot lol = new JRiot();
    
    
     public RitoSummoner(String name) throws JRiotException {
-        lol.setApiKey(ApikeyAndRegion.getApiKey());
-        lol.setRegion(ApikeyAndRegion.getRegion());
+
         this.name=name;
         setId();
         setRankedStats();
@@ -73,7 +72,7 @@ public class RitoSummoner {
             }
 
         }
-        bestChamp=lol.getChampion(idBestDif);
+        bestChamp=rito.getChampion(idBestDif);
     }
     
 
@@ -222,7 +221,7 @@ public class RitoSummoner {
             }
         }
         
-        main = lol.getChampion(mainChampId);
+        main = rito.getChampion(mainChampId);
         System.out.println(main.getName());
     }
     
@@ -232,7 +231,7 @@ public class RitoSummoner {
     }
 
     public void setRankedStats() throws JRiotException {
-        rankedStats = lol.getRankedStats(id, 4);
+        rankedStats = rito.getRankedStats(id, 4);
     }
 
     public Champion getMain() {
@@ -245,7 +244,7 @@ public class RitoSummoner {
     }
 
     public void setId() throws JRiotException {
-        this.id = lol.getSummoner(name).getId();
+        this.id = rito.getSummoner(name).getId();
     }
 
     public RecentGames getRecentGames() {
@@ -253,7 +252,7 @@ public class RitoSummoner {
     }
 
     public void setRecentGames() throws JRiotException {
-        this.recentGames = lol.getRecentGames(id);
+        this.recentGames = rito.getRecentGames(id);
     }
         
     
