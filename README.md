@@ -12,11 +12,13 @@ Este programa solo sirve para partidas clasificatorias por lo tanto perfiles unr
 El programa consige los datos del servidor de league of legends atraves de JRiot(https://github.com/t-sauer/jriot) que utiliza 
 la api oficial de Riot(empresa creadora del juego).
 Para probar el proyecto tiene estos ejemplos de perfiles que puedo asegurar que existen (mostrados en forma de "Nombre(Servidor)"):
-       UlisesT(las)
-       Groll(las)
-       sta98(las)
-       Kreported(na)
-       Shamiv(las)
-       ChaCha(NA)
-       Bunqui(Las)
-       Metazone(Na)
+
+
++       UlisesT(las)
++       Groll(las)
++       sta98(las)
++       Kreported(na)
++       Shamiv(las)
++       ChaCha(NA)
++       Bunqui(Las)
++       Metazone(Na)
