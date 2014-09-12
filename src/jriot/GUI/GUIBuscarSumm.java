@@ -32,6 +32,7 @@ public class GUIBuscarSumm extends javax.swing.JFrame {
     private RitoSummoner actual;
     public GUIBuscarSumm(String name, GUIRito guip) {
         initComponents();
+        setResizable(false);
         this.name=name;
         this.guip = guip;
         setData();        
@@ -72,6 +73,7 @@ public class GUIBuscarSumm extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         imgBest = new javax.swing.JLabel();
 
+        setTitle("JRito");
         setAutoRequestFocus(false);
 
         jLabel1.setText("Buscar");

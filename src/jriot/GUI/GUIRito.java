@@ -29,6 +29,7 @@ public class GUIRito extends javax.swing.JFrame {
     public GUIRito() {
         
         initComponents();
+        setResizable(false);
         ListaFavoritos.levantarObjetoEntero();
         refreshTable();
         try {
@@ -68,6 +69,7 @@ public class GUIRito extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Jrito");
 
         jLabel1.setText("Buscar");
 
